@@ -28,7 +28,7 @@ st.markdown("Predicting next best deals")
 #st.header("XXXX")
 #st.markdown("> XXX")
 
-df = pd.read_csv("Carters_feature.csv")
+df = pd.read_csv("Datasets/Carters_feature.csv")
 if st.checkbox('Show dataframe'):
      st.write(df)
 
