@@ -7,6 +7,6 @@
 ### 2. Data Cleaning:
 
 ### 3. Feature Engineering:
-* 1. Seasonality features:*
+(1). *Seasonality features:*
 
 
