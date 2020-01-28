@@ -1,2 +1,4 @@
-# bigdeal
-creating framework
+BigDeal
+Find the best deat at the right time
+
+
