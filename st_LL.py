@@ -10,46 +10,68 @@ from datetime import datetime, timedelta
 from PIL import Image
 
 
-st.title("BigDeal")
-st.header("Find the best deal at the right time!")
+st.title('BigDeal')
+st.header('Find the best deal at the right time!')
 #st.markdown("> XXX")
 
+# Define display function to show historical deals info using streamlit slider as an interactive way
 def display(brand):
-    df = pd.read_csv("Datasets/" + brand + "_features.csv")
+    df = pd.read_csv('Datasets/' + brand + '_features.csv')
     if st.checkbox('Show dataframe'): 
         st.write(df)
     yslider = st.slider('Please choose the year:', 2015, 2019)
     #st.slider('year: ', df["year"].min(), df["year"].max())
-    data_year = df[df["discount_today"] == 1][(df["year"] == yslider) & (df["Y_avg_discount_1d"] > 40)].copy()
-    sns.countplot(x = "month", data = data_year)    
+    data_year = df[df['discount_today'] == 1][(df['year'] == yslider) & (df['Y_avg_discount_1d'] > 40)].copy()
+    sns.countplot(x = 'month', data = data_year)    
     st.pyplot()
+
+# Define image function to show the prediction image
+def image(brand):
+    image = Image.open('Datasets/figures/' + brand + '.png')
+    st.image(image, caption='', use_column_width=True)
+   
     
-category = ['baby/kids', 'beauty', 'fashion'] 
+category = ['baby/kids', 'beauty', 'fashion']
 choose = st.radio('Please choose the product category:', category)
 if choose == 'baby/kids':
     brand = ['Carters', 'Oshkosh', 'Hanna Andersson', 'Janie&Jack']
     deal = st.selectbox('Please choose the brand:', brand)
     if deal == 'Carters':
-        st.header("Suggestion is: XXX")
-        st.markdown("XXX")
+        st.header("Suggestion is: ")
+        st.markdown("Best deal will happen in 3 days for " + deal + "!")
+        image(deal)
         display(deal)
     elif deal == 'Oshkosh':
+        st.header("Suggestion is: ")
+        st.markdown("Best deal will happen in 7 days for " + deal + "!")
+        image(deal)
         display(deal)
 elif choose == 'beauty':
-    brand = ['Estee Lauder', 'Clinique']
+    brand = ['EsteeLauder', 'Clinique']
     deal = st.selectbox('Please choose the brand:', brand)
-    if deal == 'Estee Lauder':
+    if deal == 'EsteeLauder':
+        st.header("Suggestion is: ")
+        st.markdown('Best deal for ' + deal + 'is now!')
+        image(deal)
         display(deal)
     elif deal == 'Clinique':
+        st.header("Suggestion is: ")
+        st.markdown("Best deal will happen in 7 days for " + deal + "!")
+        image(deal)
         display(deal)
 elif choose == 'fashion':
     brand = ['Gap', 'Jcrew']
     deal = st.selectbox('Please choose the brand:', brand)
     if deal == 'Gap':
+        st.header("Suggestion is: ")
+        st.markdown("Best deal will happen in 7 days for " + deal + "!")
+        image(deal)
         display(deal)
     elif deal == 'Jcrew':
+        st.header("Suggestion is: ")
+        st.markdown("Best deal will happen in 14 days for " + deal + "!")
+        image(deal)
         display(deal)
-    
 #         df = pd.read_csv("Datasets/Carters_features.csv")
 #         if st.checkbox('Show dataframe'): 
 #             st.write(df)
@@ -90,7 +112,3 @@ elif choose == 'fashion':
 #    0.0, 100.0, (25.0, 75.0)
 #)  
 
-#Image
-
-image = Image.open('/Users/universebright/Desktop/sunrise.jpg')
-st.image(image, caption='Sunrise by the mountains', use_column_width=True)
