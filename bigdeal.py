@@ -51,42 +51,42 @@ if choose == 'baby/kids':
     brand = ['Carters', 'Oshkosh', 'Hanna Andersson', 'Janie&Jack']
     deal = st.selectbox('Please choose the brand:', brand)
     if deal == 'Carters':
-        image(deal)
-        display(deal)
         st.header("Suggestion is: ")
         st.markdown("Best deal will happen in 3 days for " + deal + "!")
-    elif deal == 'Oshkosh':
         image(deal)
         display(deal)
+    elif deal == 'Oshkosh':
         st.header("Suggestion is: ")
-        st.markdown("Best deal will happen in 7 days for " + deal + ". You should wait and come back in a few days!!")   
+        st.markdown("Best deal will happen in 7 days for " + deal + ". You should wait and come back in a few days!!")          
+        image(deal)
+        display(deal)
 elif choose == 'beauty':
     brand = ['EsteeLauder', 'Clinique']
     deal = st.selectbox('Please choose the brand:', brand)
     if deal == 'EsteeLauder':
-        image(deal)
-        display(deal)
         st.header("Suggestion is: ")
         st.markdown('Best deal for ' + deal + 'is now. Go for it!') 
-    elif deal == 'Clinique':
         image(deal)
         display(deal)
+    elif deal == 'Clinique':
         st.header("Suggestion is: ")
         st.markdown("Best deal will happen in 7 days for " + deal + ". You should wait and come back in a few days!!")
+        image(deal)
+        display(deal)
 elif choose == 'fashion':
     brand = ['Gap', 'Jcrew']
     deal = st.selectbox('Please choose the brand:', brand)
     if deal == 'Gap':
-        image(deal)
-        display(deal)
         st.header("Suggestion is: ")
         st.markdown("Best deal will happen in 7 days for " + deal + ". You should wait and come back in a few days!!")
-    elif deal == 'Jcrew':
         image(deal)
         display(deal)
+    elif deal == 'Jcrew':
         st.header("Suggestion is: ")
         st.markdown("Best deal will happen in 14 days for " + deal + ". You should wait and come back in a few days!")
-#         df = pd.read_csv("Datasets/Carters_features.csv")
+        image(deal)
+        display(deal)
+
 #         if st.checkbox('Show dataframe'): 
 #             st.write(df)
 #         yslider = st.slider('Please choose the year:', 2013, 2020)
