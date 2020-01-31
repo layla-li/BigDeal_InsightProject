@@ -5,6 +5,7 @@ import re
 import numpy as np
 import pandas as pd
 import seaborn as sns
+from matplotlib import pyplot as plt
 import pickle
 from datetime import datetime, timedelta
 from PIL import Image
@@ -16,13 +17,26 @@ st.header('Find the best deal at the right time!')
 
 # Define display function to show historical deals info using streamlit slider as an interactive way
 def display(brand):
+    st.header('Here is some fun fact about historical data!')
     df = pd.read_csv('Datasets/' + brand + '_features.csv')
     if st.checkbox('Show dataframe'): 
         st.write(df)
-    yslider = st.slider('Please choose the year:', 2015, 2019)
+    data_year_1 = df[df['discount_today'] == 1][(df['Y_avg_discount_1d'] > 0)].copy()
+    data_year_11 = df[(df['Y_avg_discount_1d'] < 100)].copy()
+    data_year_2 = df[df['discount_today'] == 1][(df['Y_avg_discount_1d'] > 0)].copy()
+    data_year_22 = df[(df['Y_avg_discount_1d'] <= 50)].copy() 
+    data_year_3 = df[df['discount_today'] == 1][(df['Y_avg_discount_1d'] > 0)].copy()
+    data_year_33 = df[(df['Y_avg_discount_1d'] <= 25)].copy()
+    sns.countplot(x = 'month', data = data_year_11, color='Green') # discount > 50% 
+    sns.countplot(x = 'month', data = data_year_22, color='blue') # 25% < discount <= %50
+    sns.countplot(x = 'month', data = data_year_33, color='red') # discount <= 25%
+    plt.legend(['discount > 50%', '25% < discount <= %50', 'discount <= 25%'])
+    st.pyplot()
+
+    yslider = st.slider('Do you know which month has the most deals? Please choose the year:', 2015, 2019, 2016)
     #st.slider('year: ', df["year"].min(), df["year"].max())
-    data_year = df[df['discount_today'] == 1][(df['year'] == yslider) & (df['Y_avg_discount_1d'] > 40)].copy()
-    sns.countplot(x = 'month', data = data_year)    
+    data_year = df[df['discount_today'] == 1][(df['year'] == yslider) & (df['Y_avg_discount_1d'] > 0)].copy()
+    sns.countplot(x = 'month', data = data_year) # discount > 50% 
     st.pyplot()
 
 # Define image function to show the prediction image
@@ -37,41 +51,41 @@ if choose == 'baby/kids':
     brand = ['Carters', 'Oshkosh', 'Hanna Andersson', 'Janie&Jack']
     deal = st.selectbox('Please choose the brand:', brand)
     if deal == 'Carters':
+        image(deal)
+        display(deal)
         st.header("Suggestion is: ")
         st.markdown("Best deal will happen in 3 days for " + deal + "!")
-        image(deal)
-        display(deal)
     elif deal == 'Oshkosh':
-        st.header("Suggestion is: ")
-        st.markdown("Best deal will happen in 7 days for " + deal + "!")
         image(deal)
         display(deal)
+        st.header("Suggestion is: ")
+        st.markdown("Best deal will happen in 7 days for " + deal + ". You should wait and come back in a few days!!")   
 elif choose == 'beauty':
     brand = ['EsteeLauder', 'Clinique']
     deal = st.selectbox('Please choose the brand:', brand)
     if deal == 'EsteeLauder':
-        st.header("Suggestion is: ")
-        st.markdown('Best deal for ' + deal + 'is now!')
         image(deal)
         display(deal)
+        st.header("Suggestion is: ")
+        st.markdown('Best deal for ' + deal + 'is now. Go for it!') 
     elif deal == 'Clinique':
-        st.header("Suggestion is: ")
-        st.markdown("Best deal will happen in 7 days for " + deal + "!")
         image(deal)
         display(deal)
+        st.header("Suggestion is: ")
+        st.markdown("Best deal will happen in 7 days for " + deal + ". You should wait and come back in a few days!!")
 elif choose == 'fashion':
     brand = ['Gap', 'Jcrew']
     deal = st.selectbox('Please choose the brand:', brand)
     if deal == 'Gap':
-        st.header("Suggestion is: ")
-        st.markdown("Best deal will happen in 7 days for " + deal + "!")
         image(deal)
         display(deal)
+        st.header("Suggestion is: ")
+        st.markdown("Best deal will happen in 7 days for " + deal + ". You should wait and come back in a few days!!")
     elif deal == 'Jcrew':
-        st.header("Suggestion is: ")
-        st.markdown("Best deal will happen in 14 days for " + deal + "!")
         image(deal)
         display(deal)
+        st.header("Suggestion is: ")
+        st.markdown("Best deal will happen in 14 days for " + deal + ". You should wait and come back in a few days!")
 #         df = pd.read_csv("Datasets/Carters_features.csv")
 #         if st.checkbox('Show dataframe'): 
 #             st.write(df)
