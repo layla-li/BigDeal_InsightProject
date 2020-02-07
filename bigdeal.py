@@ -104,14 +104,16 @@ def message_deal(best_in_days, brand):
         return "ERROR! Use best_in_days = 1, 3, 7 or 14!"
     return message_dict[best_in_days]
     
+       
 category = ['baby/kids', 'beauty', 'fashion']
 brands_dict = {
-    'baby/kids': ['', 'Carters', 'Oshkosh', 'Hanna Andersson', 'Janie&Jack'],
+    'baby/kids': ['', 'Carters', 'Oshkosh', 'Hanna Andersson'],
     'beauty': ['', 'Lancome', 'EsteeLauder', 'Clinique'],
     'fashion': ['', 'Gap', 'Jcrew']
 }
-choose = st.radio('Please choose the product category:', category)
-deal = st.selectbox('Please choose the brand:', 
+
+choose = st.sidebar.radio('Please choose the product category:', category)
+deal = st.sidebar.selectbox('Please choose the brand:', 
                     brands_dict[choose], format_func=lambda x: 'Select an option' if x == '' else x)
 if deal != "":
     #st.header(deal)
@@ -123,82 +125,4 @@ if deal != "":
 
 
 
-
-
-# if choose == 'baby/kids':
-#     deal = st.selectbox('Please choose the brand:', ['', 'Carters', 'Oshkosh', 'Hanna Andersson', 'Janie&Jack'], format_func=lambda x: 'Select an option' if x == '' else x)
-    
-#     if deal == 'Carters':
-#         st.header("Suggestion is: ")
-#         st.markdown("Best deal will happen in 3 days for " + deal + "!")
-#         plot(deal)
-#         display(deal)
-#     elif deal == 'Oshkosh':
-#         st.header("Suggestion is: ")
-#         st.markdown("Best deal will happen in 7 days for " + deal + ". You should wait and come back in a few days!!")          
-#         plot(deal)
-#         display(deal)
-# elif choose == 'beauty':
-#     deal = st.selectbox('Please choose the brand:', ['', 'Lancome', 'EsteeLauder', 'Clinique'], format_func=lambda x: 'Select an option' if x == '' else x)
-#     if deal == 'EsteeLauder':
-#         st.header("Suggestion is: ")
-#         st.markdown('Best deal for ' + deal + 'is now. Go for it!') 
-#         plot(deal)
-#         display(deal)
-#     elif deal == 'Clinique':
-#         st.header("Suggestion is: ")
-#         st.markdown("Best deal will happen in 7 days for " + deal + ". You should wait and come back in a few days!!")
-#         plot(deal)
-#         display(deal)
-# elif choose == 'fashion':
-#     deal = st.selectbox('Please choose the brand:', ['', 'Gap', 'Jcrew'], format_func=lambda x: 'Select an option' if x == '' else x)
-#     if deal == 'Gap':
-#         st.header("Suggestion is: ")
-#         st.markdown("Best deal will happen in 7 days for " + deal + ". You should wait and come back in a few days!!")
-#         plot(deal)
-#         display(deal)
-#     elif deal == 'Jcrew':
-#         st.header("Suggestion is: ")
-#         st.markdown("Best deal will happen in 14 days for " + deal + ". You should wait and come back in a few days!")
-#         plot(deal)
-#         display(deal)
-
-#         if st.checkbox('Show dataframe'): 
-#             st.write(df)
-#         yslider = st.slider('Please choose the year:', 2013, 2020)
-#         #st.slider('year: ', df["year"].min(), df["year"].max())
-#         data_year = df[df["discount_today"] == 1][(df["year"] == yslider) & (df["Y_avg_discount_1d"] > 40)].copy()
-#         sns.countplot(x = "month", data = data_year)    
-#         st.pyplot()
-        
- 
-
-         #rf = RandomForestClassifier()
-#         #rf.fit(X_train, y_train)
-#         x0 = {'ndays_of_deal': [1], 
-#           'avg_comments':[10], 
-#           'avg_bookmarks':[12], 
-#           'avg_shares':[8], 
-#           'year':[2020], 
-#           'month':[1], 
-#           'day':[23], 
-#           'weekday':[4]}
-#         x0_pd = pd.DataFrame(x0)
-#         y0 = pickle_model.predict(x0_pd)
-#         if y0 == 1:
-#             st.markdown("Yes, there is a deal in 3 days!")
-#         elif y0 == 0:
-#             st.markdown("No deal")
-
-
-# add_selectbox = st.sidebar.selectbox(
-#     'Which year?',
-#     ('Email', 'Home phone', 'Mobile phone')
-# )
-
-# Adds a slider to the sidebar
-#add_slider = st.sidebar.slider(
-#    'Select which year',
-#    0.0, 100.0, (25.0, 75.0)
-#)  
 
