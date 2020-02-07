@@ -69,10 +69,11 @@ def plot(brand=None, thresholds=[0, 10, 50, 100], **kwargs):
 
 # Define display function to show historical deals info using streamlit slider as an interactive way
 def display(brand):
-    st.header('Here is some fun fact about historical data!')
     df = pd.read_csv('Datasets/' + brand + '_features.csv')
-    if st.checkbox('Show dataframe'): 
-        st.write(df)
+# Incase one wants to explore the data
+#    if st.checkbox('Show dataframe'): 
+#        st.write(df)
+    st.header('Here is some fun fact about historical data!')
     data_year_1 = df[df['discount_today'] == 1][(df['Y_avg_discount_1d'] > 0)].copy()
     data_year_11 = df[(df['Y_avg_discount_1d'] < 100)].copy()
     data_year_2 = df[df['discount_today'] == 1][(df['Y_avg_discount_1d'] > 0)].copy()
@@ -92,7 +93,26 @@ def display(brand):
     data_year = df[df['discount_today'] == 1][(df['year'] == yslider) & (df['Y_avg_discount_1d'] > 0)].copy()
     sns.countplot(x = 'month', data = data_year) # discount > 50% 
     st.pyplot()
+    
+def display_b(brand): 
+    df = pd.read_csv('Datasets/' + brand + '_features.csv')
+    data_year_1 = df[df['discount_today'] == 1][(df['Y_avg_discount_1d'] > 0)].copy()
+    data_year_11 = df[(df['Y_avg_discount_1d'] < 100)].copy()
+    data_year_2 = df[df['discount_today'] == 1][(df['Y_avg_discount_1d'] > 0)].copy()
+    data_year_22 = df[(df['Y_avg_discount_1d'] <= 10)].copy()
+    sns.countplot(x = 'month', data = data_year_11, color='Green') # discount > 10% 
+    sns.countplot(x = 'month', data = data_year_22, color='red') # discount <= 10%
+    bottom, top = plt.ylim()
+    plt.legend(['discount > 10%', 'discount <= 10%'])
+    plt.ylim(bottom, top*1.25)
+    st.pyplot()
 
+    yslider = st.slider('Do you know which month has the most deals? Please choose the year:', 2015, 2019, 2016)
+    #st.slider('year: ', df["year"].min(), df["year"].max())
+    data_year = df[df['discount_today'] == 1][(df['year'] == yslider) & (df['Y_avg_discount_1d'] > 0)].copy()
+    sns.countplot(x = 'month', data = data_year) # discount > 50% 
+    st.pyplot()
+    
 def message_deal(best_in_days, brand):
     message_dict = {
         1: "Best deal will happen tomorrow for %s! Go for it!"%brand,
@@ -105,7 +125,7 @@ def message_deal(best_in_days, brand):
     return message_dict[best_in_days]
     
        
-category = ['baby/kids', 'beauty', 'fashion']
+category = ['beauty', 'baby/kids', 'fashion']
 brands_dict = {
     'baby/kids': ['', 'Carters', 'Oshkosh', 'HannaAndersson'],
     'beauty': ['', 'Lancome', 'EsteeLauder', 'Clinique'],
@@ -116,12 +136,16 @@ choose = st.sidebar.radio('Please choose the product category:', category)
 deal = st.sidebar.selectbox('Please choose the brand:', 
                     brands_dict[choose], format_func=lambda x: 'Select an option' if x == '' else x)
 if deal != "":
-    #st.header(deal)
-    ndays = plot(deal)
-    st.header("Suggestion is: ")
-    st.markdown(message_deal(ndays, deal))
-    display(deal)
-
+    if choose == 'beauty':
+        ndays = plot(deal)
+        st.header("Suggestion is: ")
+        st.markdown(message_deal(ndays, deal))
+        display_b(deal)
+    else:
+        ndays = plot(deal)
+        st.header("Suggestion is: ")
+        st.markdown(message_deal(ndays, deal))
+        display(deal)        
 
 
 
