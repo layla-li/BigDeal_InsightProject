@@ -107,7 +107,7 @@ def message_deal(best_in_days, brand):
        
 category = ['baby/kids', 'beauty', 'fashion']
 brands_dict = {
-    'baby/kids': ['', 'Carters', 'Oshkosh', 'Hanna Andersson'],
+    'baby/kids': ['', 'Carters', 'Oshkosh', 'HannaAndersson'],
     'beauty': ['', 'Lancome', 'EsteeLauder', 'Clinique'],
     'fashion': ['', 'Gap', 'Jcrew']
 }
