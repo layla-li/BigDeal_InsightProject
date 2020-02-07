@@ -3,8 +3,11 @@
 A web app that predicts the next best deal for online shoppers to help them save both money and time.
 
 App Link: https://bigdeal.herokuapp.com/
-### 1. Data Collection:
 
+## Problem/context:
+For online shoppers, getting good deals helps a lot in terms of saving money. However, hunting discount online can be time consuming. Morever, people are not sure when is the bet time to buy and whether the current discount is good enough. BigDeal directly provides users the prediction about the upcoming discount information, as well as suggestion about when is the right time to get the best discount. 
+### 1. Data Collection:
+I scraped over 10,000 historical sales events using Python Selenium from two major websites which are the leading and most trusted online community dedicated to sharing, rating and reviewing deals. 
 ### 2. Data Cleaning:
 
 ### 3. Feature Engineering:
