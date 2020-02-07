@@ -12,8 +12,10 @@ I scraped over 10,000 historical sales events using Python Selenium from two maj
 
 ### 3. Feature Engineering:
 (1). *Seasonality features:*
-
+Month of year, Day of year, Day of week, Distance to major holidays, etc.
 (2). *Autocorrelation features:*
+Discount past 1 day, Discount past 2 days, Discount past 3 days...Discount past 7 days
+(3). *Other statistical features:*
+Max discount past 15 days, Average discount past 15 days, Max discount past 30 days, Average discount past 30 days, etc.
 
-(3). *Other features:*
 
