@@ -22,6 +22,9 @@ Discount past 1 day, Discount past 2 days, Discount past 3 days...Discount past 
 (3). *Other statistical features:*
 
 Max discount past 15 days, Average discount past 15 days, Max discount past 30 days, Average discount past 30 days, etc.
+
+Data Cleaning and Feature Engineering code can be found in DataCleaning.ipynb
+
 ### 4. Modeling:
 Logistic Regression
 
