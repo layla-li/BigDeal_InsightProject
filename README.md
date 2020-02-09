@@ -25,7 +25,7 @@ Discount past 1 day, Discount past 2 days, Discount past 3 days...Discount past 
 
 Max discount past 15 days, Average discount past 15 days, Max discount past 30 days, Average discount past 30 days, etc.
 
-Data Cleaning and Feature Engineering code can be found in ```sh DataCleaning.ipynb```
+Data Cleaning and Feature Engineering code can be found in ```DataCleaning_FeatureEngineering.ipynb```
 
 
 ### 4. Model Selection and Validation:
@@ -37,12 +37,11 @@ XGBoost
 
 I started with Logistic Regression as my baseline model. Then I moved on to Random Forest, and ultimately I chose XGBoost and performed hyper parameter tuning using grid search cv. 
 
-First I looked at whether there was a deal or not, which corresponds to a binary classification problem. Code can be found in Model_binary.ipynb. Then I further worked on predicting what the discount percentage will be, which corresponds to a multi-class classification problem. Code can be found in Model_multiclass.ipynb.
+First I looked at whether there was a deal or not, which corresponds to a binary classification problem. Code can be found in ```Model_binary.ipynb```. Then I further worked on predicting what the discount percentage will be, which corresponds to a multi-class classification problem. Code can be found in ```Model_multiclass.ipynb```.
 
 ### 5. Web App
 The web App was built using Python streamlit and deployed on the Heroku cloud platform. 
-Code can be found under folder called WebApp
-'''{
+Code can be found under folder called ```WebApp```.
 
 
 
