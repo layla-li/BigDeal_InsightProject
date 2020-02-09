@@ -25,7 +25,11 @@ Discount past 1 day, Discount past 2 days, Discount past 3 days...Discount past 
 
 Max discount past 15 days, Average discount past 15 days, Max discount past 30 days, Average discount past 30 days, etc.
 
-Data Cleaning and Feature Engineering code can be found in DataCleaning.ipynb
+Data Cleaning and Feature Engineering code can be found in 
+```sh
+DataCleaning.ipynb
+```
+
 
 ### 4. Model Selection and Validation:
 Logistic Regression
@@ -40,6 +44,8 @@ First I looked at whether there was a deal or not, which corresponds to a binary
 
 ### 5. Web App
 The web App was built using Python streamlit and deployed on the Heroku cloud platform. 
+Code can be found under folder called WebApp
+'''{
 
 
 
