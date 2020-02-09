@@ -11,6 +11,8 @@ I scraped over 10,000 historical sales events using Python Selenium from two maj
 ### 2. Data Cleaning:
 The original data was messy with a lot of texts. I extracted Useful information, like the amount of deal for a particular brand from the deal description and what day the deal was posted on the website, etc. I performed regular expression to get my final clean data.
 ### 3. Feature Engineering:
+I added 28 new features as follows:
+
 (1). *Seasonality features:*
 
 Month of year, Day of year, Day of week, Distance to major holidays, etc.
@@ -25,12 +27,19 @@ Max discount past 15 days, Average discount past 15 days, Max discount past 30 d
 
 Data Cleaning and Feature Engineering code can be found in DataCleaning.ipynb
 
-### 4. Modeling:
+### 4. Model Selection and Validation:
 Logistic Regression
 
 Random Forest
 
 XGBoost
+
+I started with Logistic Regression as my baseline model. Then I moved on to Random Forest, and ultimately I chose XGBoost and performed hyper parameter tuning using grid search cv. 
+
+First I looked at whether there was a deal or not, which corresponds to a binary classification problem. Code can be found in Model_binary.ipynb. Then I further worked on predicting what the discount percentage will be, which corresponds to a multi-class classification problem. Code can be found in Model_multiclass.ipynb.
+
+### 5. Web App
+The web App was built using Python streamlit and deployed on the Heroku cloud platform. 
 
 
 
