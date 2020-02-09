@@ -25,10 +25,7 @@ Discount past 1 day, Discount past 2 days, Discount past 3 days...Discount past 
 
 Max discount past 15 days, Average discount past 15 days, Max discount past 30 days, Average discount past 30 days, etc.
 
-Data Cleaning and Feature Engineering code can be found in 
-```sh
-DataCleaning.ipynb
-```
+Data Cleaning and Feature Engineering code can be found in ```sh DataCleaning.ipynb```
 
 
 ### 4. Model Selection and Validation:
