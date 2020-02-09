@@ -41,7 +41,7 @@ First I looked at whether there was a deal or not, which corresponds to a binary
 
 ### 5. Web App
 The web App was built using Python streamlit and deployed on the Heroku cloud platform. 
-Code can be found under folder called ```WebApp```.
+Code can be found in ```bigdeal.py```. 
 
 
 
