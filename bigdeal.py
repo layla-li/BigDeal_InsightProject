@@ -74,6 +74,7 @@ def display(brand):
 #    if st.checkbox('Show dataframe'): 
 #        st.write(df)
     st.header('Here is some fun fact about historical data!')
+    st.markdown('Do you know which month of the year has the best deals? Check out this plot!')
     data_year_1 = df[df['discount_today'] == 1][(df['Y_avg_discount_1d'] > 0)].copy()
     data_year_11 = df[(df['Y_avg_discount_1d'] < 100)].copy()
     data_year_2 = df[df['discount_today'] == 1][(df['Y_avg_discount_1d'] > 0)].copy()
@@ -88,13 +89,18 @@ def display(brand):
     plt.ylim(bottom, top*1.25)
     st.pyplot()
 
-    yslider = st.slider('Do you know which month has the most deals? Please choose the year:', 2015, 2019, 2016)
+    if brand == 'HannaAndersson':
+        yslider = st.slider('Do you know which day of the week has the most deals? (0: Monday, 1: Tuesday, 2: wednesday, 3: Thursday, 4: Friday, 5: Saturday, 6: Sunday) Please choose the year:', 2017, 2019, 2018)
+    else:
+        yslider = st.slider('Do you know which day of the week has the most deals? (0: Monday, 1: Tuesday, 2: wednesday, 3: Thursday, 4: Friday, 5: Saturday, 6: Sunday) Please choose the year:', 2015, 2019, 2016)
     data_year = df[df['discount_today'] == 1][(df['year'] == yslider) & (df['Y_avg_discount_1d'] > 0)].copy()
-    sns.countplot(x = 'month', data = data_year) # discount > 50% 
+    sns.countplot(x = 'weekday', data = data_year) 
     st.pyplot()
     
 def display_b(brand): 
     df = pd.read_csv('Datasets/' + brand + '_features.csv')
+    st.header('Here is some fun fact about historical data!')
+    st.markdown('Do you know which month of the year has the best deals? Check out this plot!')
     data_year_1 = df[df['discount_today'] == 1][(df['Y_avg_discount_1d'] > 0)].copy()
     data_year_11 = df[(df['Y_avg_discount_1d'] < 100)].copy()
     data_year_2 = df[df['discount_today'] == 1][(df['Y_avg_discount_1d'] > 0)].copy()
@@ -106,9 +112,14 @@ def display_b(brand):
     plt.ylim(bottom, top*1.25)
     st.pyplot()
 
-    yslider = st.slider('Do you know which month has the most deals? Please choose the year:', 2015, 2019, 2016)
+#     yslider = st.slider('Do you know which month has the most deals? Please choose the year:', 2015, 2019, 2016)
+#     data_year = df[df['discount_today'] == 1][(df['year'] == yslider) & (df['Y_avg_discount_1d'] > 0)].copy()
+#     sns.countplot(x = 'month', data = data_year) # discount > 50% 
+#     st.pyplot()
+    
+    yslider = st.slider('Do you know which day of the week has the most deals? Please choose the year:', 2015, 2019, 2016)
     data_year = df[df['discount_today'] == 1][(df['year'] == yslider) & (df['Y_avg_discount_1d'] > 0)].copy()
-    sns.countplot(x = 'month', data = data_year) # discount > 50% 
+    sns.countplot(x = 'weekday', data = data_year) # discount > 50% 
     st.pyplot()
     
 def message_deal(best_in_days, brand):
