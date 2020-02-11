@@ -141,6 +141,7 @@ brands_dict = {
     'fashion': ['', 'Gap', 'Jcrew']
 }
 
+
 choose = st.sidebar.radio('Please choose the product category:', category)
 deal = st.sidebar.selectbox('Please choose the brand:', 
                     brands_dict[choose], format_func=lambda x: 'Select an option' if x == '' else x)
@@ -156,6 +157,6 @@ if deal != "":
         st.markdown(message_deal(ndays, deal))
         display(deal)        
 
-
+st.markdown('[BigDeal Demo](https://docs.google.com/presentation/d/e/2PACX-1vRBIEafaBDGJ2BvhGeiCbcaFFFUbASuIUzWg7qvPQpGTrGaFAeS-B9zwWf6q7PQps3kyQwntTKg4yF2/pub?start=false&loop=false&delayms=3000)', unsafe_allow_html=True)
 
 
